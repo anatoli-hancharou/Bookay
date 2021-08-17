@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Bookay</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+
+    <header class="container-fluid w-75">
+        <div>
+            <h1 class="main-logo">
+                <a href="/">Topsy Turvy Cake Design</a>
+            </h1>
+        </div>
+        <div>
+            <nav class="navbar">
+                <ul class="nav nav-pills">
+                    <li><a href="/About">About</a></li>
+                    <li><a href="/Blog">Blog</a></li>
+                    <li><a class="active" href="/">Hotels</a></li>
+                    <li><a href="/Portfolio">Portfolio</a></li>
+                </ul>
+                <ul class="nav nav-pills">
+                    <li>
+                        @if(!User.Identity.IsAuthenticated) {
+                            <a href="/Account/Login">Login</a>
+                        } else {
+                            <form method="post">
+                                <div class="input-group">
+                                    <span>@User.Identity.Name</span>
+                                    <button type="submit" class="btn btn-link">Logout</button>
+                                </div>
+                            </form>
+                        }
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div>
+            @if (IsSectionDefined("Title"))
+            {
+                @RenderSection("Title", required: false)
+            } else {
+                <h2 class="title">@ViewData["Title"]</h2>
+            }
+        </div>
+    </header>
+
+    <div class="container">
+
+        @RenderBody()
+                
+    </div>
+
+    <footer>
+        <div class="text-center">
+            <span class="text-muted">Last Rendered: @DateTime.Now </span>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+</body>
+</html>

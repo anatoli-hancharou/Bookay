@@ -1,0 +1,27 @@
+﻿@page
+@model IndexModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <div class="container">
+        <div class="row">
+            @foreach (var hotel in Model.Hotels)
+            {
+                <div class="col-md-4">
+                    <a asp-page="/Hotel" asp-route-id="@hotel.Id">
+                        <div class="card mb-4 box-shadow">
+                            <img class="card-img-top" style="height: 225px; width: 100%; display: block;" src="~/images/hotel-promo.png" />
+                            <div class="card-body">
+                                <h4>@hotel.Name</h4>
+                                <p class="card-text">@hotel.ShortDescription</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            }
+        </div>
+    </div>
+</div>
