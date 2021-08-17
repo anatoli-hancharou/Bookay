@@ -1,0 +1,19 @@
+﻿@page "{Id}"
+@using Bookay.Models 
+@model Bookay.Pages.HotelModel
+
+@{
+    var id = long.Parse((string)RouteData.Values["Id"]);
+    var hotel = await Model.hotelsService.FindAsync(id);
+    ViewData["Title"] = hotel.Name;
+}
+
+<h3>@hotel.Description</h3>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@*@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}*@
